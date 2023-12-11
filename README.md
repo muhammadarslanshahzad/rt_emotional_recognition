@@ -3,6 +3,7 @@
 - data ingestion
 - data preprocessing
   - data cleaning
+  - transform
 - modeling
 - Model training
 - Model tunning
