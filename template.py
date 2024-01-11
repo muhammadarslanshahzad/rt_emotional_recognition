@@ -4,49 +4,41 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
 
-
-project_name = "ers"
+PROJECT_NAME = "ems"
 
 list_of_files = [
-    ".github/workflows/.gitkeep",
-    f"src/{project_name}/__init__.py",
-    f"src/{project_name}/components/__init__.py",
-    f"src/{project_name}/utils/__init__.py",
-    f"src/{project_name}/config/__init__.py",
-    f"src/{project_name}/config/configuration.py",
-    f"src/{project_name}/pipeline/__init__.py",
-    f"src/{project_name}/entity/__init__.py",
-    f"src/{project_name}/constants/__init__.py",
+    f"src/{PROJECT_NAME}/__init__.py",
+    f"src/{PROJECT_NAME}/config/__init__.py",
+    f"src/{PROJECT_NAME}/config/config.py",
+    f"src/{PROJECT_NAME}/constants/__init__.py",
+    f"src/{PROJECT_NAME}/utils/__init__.py",
+    f"src/{PROJECT_NAME}/utils/common.py",
+    f"src/{PROJECT_NAME}/components/__init__.py",
+    f"src/{PROJECT_NAME}/pipeline/__init__.py",
+    f"src/{PROJECT_NAME}/logger/__init__.py",
+    f"src/{PROJECT_NAME}/entities/__init__.py",
     "config/config.yaml",
-    "dvc.yaml",
-    "params.yaml",
-    "Dockerfile",
-    "docker-compose.yaml",
+    "param.yaml",
+    "app.py",
+    "main.py",
     "requirements.txt",
     "setup.py",
-    "main.py",
     "research/trials.ipynb",
-    "templates/index.html"
-    
-
-
+    "templates/index.html",
 ]
-
 
 for filepath in list_of_files:
     filepath = Path(filepath)
+
     filedir, filename = os.path.split(filepath)
 
-
-    if filedir !="":
+    if filedir != "":
         os.makedirs(filedir, exist_ok=True)
-        logging.info(f"Creating directory; {filedir} for the file: {filename}")
+        logging.info(f"Creating directory: {filedir} for file: {filename}")
 
     if (not os.path.exists(filepath)) or (os.path.getsize(filepath) == 0):
         with open(filepath, "w") as f:
             pass
-            logging.info(f"Creating empty file: {filepath}")
-
-
+            logging.info(f"Creating empty file: {filename}")
     else:
-        logging.info(f"{filename} is already exists")
+        logging.info(f"{filename} already exists!")
